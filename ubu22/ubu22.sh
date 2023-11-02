@@ -337,14 +337,14 @@ setPerms(){
 }
 
 setPasswords(){
-    echo 'root:G59vCHe0T8fcdQ1' | chpasswd;
+    echo 'root:root' | chpasswd;
     passwd -l root;
 
     while IFS=: read -r user; do
         passwd -q -x 85 "$user" > /dev/null
         passwd -q -n 15 "$user" > /dev/null
 
-        echo "$user:G59vCHe0T8fcdQ1" | chpasswd
+        echo "$user:user" | chpasswd
         change --maxdays 15 -mindays 6 -warndays 7 --inactive 5 "$user"
 
     done < "./users.txt"
